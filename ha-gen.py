@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import os, sys, stat, subprocess
 from datetime import date
 
