@@ -48,7 +48,7 @@ latex_template_list = [
 "%--------------------------------------",
 "\\addtolength{\\hoffset}{-2.25cm}",
 "\\addtolength{\\textwidth}{4.5cm}",
-"\\addtolength{\\voffset}{-2.5cm}", 
+"\\addtolength{\\voffset}{-3.5cm}", 
 "\\addtolength{\\textheight}{5cm}",
 "\\setlength{\parskip}{0pt}",
 "\\setlength{\parindent}{15pt}", 
