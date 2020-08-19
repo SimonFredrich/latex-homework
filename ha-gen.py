@@ -41,13 +41,13 @@ path = os.path.join(parent_dir, directory)
 
 # list of .tex file content
 latex_template_list = [
-"\\documentclass[12pt]{article}",
+"\\documentclass[12pt, a4paper]{article}",
 "% change size of headings",
 "%--------------------------------------",
 "\\usepackage[small]{titlesec}",
 "%--------------------------------------",
-"\\addtolength{\\hoffset}{-2.25cm}",
-"\\addtolength{\\textwidth}{4.5cm}",
+"\\addtolength{\\hoffset}{-1cm}",
+"\\addtolength{\\textwidth}{3.5cm}",
 "\\addtolength{\\voffset}{-3.5cm}", 
 "\\addtolength{\\textheight}{5cm}",
 "\\setlength{\parskip}{0pt}",
