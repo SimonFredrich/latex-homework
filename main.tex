@@ -1,7 +1,3 @@
-% Todas as linhas precedidas pelo simbolo '%' são comentários
-% e não afetam em nada o seu texto final.
-
-% IGNORE. Pacotes necessários e acessórios para o documento
 \documentclass[12pt, a4paper]{article}
 \usepackage{amsthm}
 \usepackage{libertine}
@@ -11,25 +7,25 @@
 \usepackage{multicol}
 \usepackage[shortlabels]{enumitem}
 %--------------------------------------
-% Informações que podem ser configuradas
+% wichtige Informationen
 %--------------------------------------
-\newcommand{\class}{Romantik}
-\newcommand{\term}{3. Semester}
-\newcommand{\topic}{Einfluss der französischen Revolution auf Deutschland}
-\newcommand{\created}{21/08/2020}
+\newcommand{\class}{Abschnitt}
+\newcommand{\term}{X. Semester}
+\newcommand{\topic}{Thema}
+\newcommand{\created}{XX/XX/XXXX}
 \newcommand{\timelimit}{}
-\newcommand{\name}{Simon Fredrich}
+\newcommand{\name}{Name}
 %--------------------------------------
-%encoding
+% richtiges Encoding
 %--------------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 %--------------------------------------
-%German-specific commands
+% German-specific commands
 %--------------------------------------
 \usepackage[ngerman]{babel}
 %--------------------------------------
-%Hyphenation rules
+% Hyphenation rules
 %--------------------------------------
 \usepackage{hyphenat}
 \hyphenation{Mathe-matik wieder-gewinnen}
@@ -40,21 +36,20 @@
 %--------------------------------------
 % change text-offset settings
 %--------------------------------------
-\addtolength{\voffset}{-2cm}
-\addtolength{\hoffset}{-0.25cm}
-\addtolength{\textwidth}{2cm}
+\addtolength{\voffset}{-1cm}
+%\addtolength{\hoffset}{-1.25cm}
+%\addtolength{\textwidth}{1.5cm}
 
 \usepackage{fancyhdr}
 
 \begin{document}
-%\pagestyle{plain}
-%\thispagestyle{empty}
+%--------------------------------------
 % formalities
 %--------------------------------------
 \noindent
 \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
 \textit{\name} && \textit{\created}\\             % Insira o seu nome dentro dos {}'.
-\textit{\class} &&\textit{\term}\\
+\textit{\class} && \textit{\term}\\
 \end{tabular*}\\
 % big line to separate formalities
 \rule[1ex]{\textwidth}{0.5pt}
@@ -67,19 +62,10 @@
 %\setcounter{page}{1}
 \pagenumbering{arabic}
 \rfoot[]{\thepage}
-\section{Erstens}
-Beispiel I.
+% INHALT %
 
-\bigskip
 
-a) $A \lor B, \neg A \vDash B$
 
-\begin{proof}
-Iremos demonstrar que o presente argumento é válido. Suponha, por absurdo, que o argumento é inválido. Assim, há uma valoração $v$, tal que:
-i. $v(A\lor B)=V$, 
-ii. $v(\neg A)=V$ e 
-iii. $v(B)=F$. Note que de i. e iii., pelo significado da ($\lor$), temos que iv. $v(A)=V$. De iv., pelo significado da ($\neg$), temos que v. $v(\neg A)=F$. Contudo, de ii. e v., obtemos uma contradição, visto que $v$ é função. Segue-se disso que não há valoração que torne as premissas verdadeiras e a conclusão falsa. Portanto, o argumento é válido.\\
-\end{proof}
 
 \bigskip
 

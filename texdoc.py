@@ -14,18 +14,20 @@ topic = input("Thema: ")
 # make topic fit folder structure
 topic = topic.replace(" ", "_")
 
-# compose directory name
-directory = topic
-
-# format topic back to space form
-topic = topic.replace("_", " ")
-
 # get current date and format it the german way :D
 day = str(date.today().day)
 month = str(date.today().month)
 year = str(date.today().year)
 dot = "."
 date_ = day + dot + month + dot + year
+
+# compose directory
+dash = "-"
+underscore = "_"
+directory = day + dash + month + dash + year + underscore + topic
+
+# format topic back to space form
+topic = topic.replace("_", " ")
 
 # get path to put new directory inside
 parent_dir = os.getcwd()
@@ -38,9 +40,9 @@ latex_template_list = [
 "%--------------------------------------",
 "\\usepackage[small]{titlesec}",
 "%--------------------------------------",
-"\\addtolength{\\hoffset}{-1.25cm}",
+"\\addtolength{\\hoffset}{-1cm}",
 "\\addtolength{\\textwidth}{3.5cm}",
-"\\addtolength{\\voffset}{-3.5cm}", 
+"\\addtolength{\\voffset}{-2.5cm}", 
 "\\addtolength{\\textheight}{5cm}",
 "\\setlength{\parskip}{0pt}",
 "\\setlength{\parindent}{15pt}", 
@@ -79,6 +81,75 @@ latex_template_list = [
 "\\end{document}"
 ]
 
+# new version of latex template list
+latex_template_list = [
+"\\documentclass[12pt, a4paper]{article}",
+"\\usepackage{amsthm}",
+"\\usepackage{libertine}",
+"\\usepackage[utf8]{inputenc}",
+"\\usepackage[margin=1in]{geometry}",
+"\\usepackage{amsmath,amssymb}",
+"\\usepackage{multicol}",
+"\\usepackage[shortlabels]{enumitem}",
+"%--------------------------------------",
+"% wichtige Informationen",
+"%--------------------------------------",
+"\\newcommand{\\class}{Abschnitt}",
+"\\newcommand{\\term}{X. Semester}",
+"\\newcommand{\\topic}{Thema}",
+"\\newcommand{\\created}{XX/XX/XXXX}",
+"\\newcommand{\\timelimit}{}",
+"\\newcommand{\\name}{Name}",
+"%--------------------------------------",
+"% richtiges Encoding",
+"%--------------------------------------",
+"\\usepackage[utf8]{inputenc}",
+"\\usepackage[T1]{fontenc}",
+"%--------------------------------------",
+"% German-specific commands",
+"%--------------------------------------",
+"\\usepackage[ngerman]{babel}",
+"%--------------------------------------",
+"% Hyphenation rules",
+"%--------------------------------------",
+"\\usepackage{hyphenat}",
+"\\hyphenation{Mathe-matik wieder-gewinnen}",
+"%--------------------------------------",
+"% change size of headings",
+"%--------------------------------------",
+"\\usepackage[small]{titlesec}",
+"%--------------------------------------",
+"% change text-offset settings",
+"%--------------------------------------",
+"\\addtolength{\\voffset}{-1cm}",
+"%\\addtolength{\\hoffset}{-1.25cm}",
+"%\\addtolength{\\textwidth}{1.5cm}",
+"\\usepackage{fancyhdr}",
+"\\begin{document}",
+"%--------------------------------------",
+"% formalities",
+"%--------------------------------------",
+"\\noindent",
+"\\begin{tabular*}{\\textwidth}{l @{\\extracolsep{\\fill}} r @{\\extracolsep{6pt}} l}",
+"\\textit{\\name} && \\textit{\\created}\\\\             % Insira o seu nome dentro dos {}'.",
+"\\textit{\\class} &&\\textit{\\term}\\\\",
+"\\end{tabular*}\\",
+"% big line to separate formalities",
+"\\rule[1ex]{\\textwidth}{0.5pt}",
+"% topic heading",
+"%\\begin{center}{\\scshape \\Large \\topic}\\end{center}",
+"\\begin{center}{\\Large \\topic}\\end{center}",
+"%--------------------------------------",
+"% set pagenumbering",
+"%--------------------------------------",
+"%\\setcounter{page}{1}",
+"\\pagenumbering{arabic}",
+"\\rfoot[]{\\thepage}",
+"% INHALT %",
+"\\bigskip",
+"\\end{document}"
+]
+
 # list of .sh file content
 bash_template_list = [
 "!/bin/bash",
@@ -108,5 +179,5 @@ if __name__ == "__main__":
     createFile(path, "main.tex", latex_template_list)
     createFile(path, "build.sh", bash_template_list)
     print("Done!")
-    print("Die Hausaufgabe zum Thema '" + topic + "' sollte\nam " + due_to + " fertig sein.")
+    print("Die Hausaufgabe zum Thema '" + topic + "' wurde erstellt!")
     
