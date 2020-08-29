@@ -10,7 +10,9 @@ change_author = input("Willst du den Autor '"+author+"' ändern? (J/n) ")
 # check if author should be changed
 if (change_author in ("J","j","Y","y")):
     author = input("Autor: ")
+section = input("Abschnitt des Unterrichtsstoffes: ")
 topic = input("Thema: ")
+semester = "3"
 # make topic fit folder structure
 topic = topic.replace(" ", "_")
 
@@ -82,7 +84,38 @@ latex_template_list = [
 ]
 
 # new version of latex template list
-latex_template_list = [
+latex_main = [
+"\\input{packages.tex}",
+"\\begin{document}",
+"\\input{formalities.tex}",
+"\\end{document}"
+]
+
+latex_formalities = [
+"%--------------------------------------",
+"% formalities",
+"%--------------------------------------",
+"\\noindent",
+"\\begin{tabular*}{\\textwidth}{l @{\\extracolsep{\\fill}} r @{\\extracolsep{6pt}} l}",
+"\\textit{\\name} && \\textit{\\created}\\\\             % Insira o seu nome dentro dos {}'.",
+"\\textit{\\class} &&\\textit{\\term}\\\\",
+"\\end{tabular*}\\",
+"% big line to separate formalities",
+"\\rule[1ex]{\\textwidth}{0.5pt}",
+"% topic heading",
+"%\\begin{center}{\\scshape \\Large \\topic}\\end{center}",
+"\\begin{center}{\\Large \\topic}\\end{center}",
+"%--------------------------------------",
+"% set pagenumbering",
+"%--------------------------------------",
+"%\\setcounter{page}{1}",
+"\\pagenumbering{arabic}",
+"\\rfoot[]{\\thepage}",
+"% INHALT %",
+"\\bigskip"
+]
+
+latex_packages = [
 "\\documentclass[12pt, a4paper]{article}",
 "\\usepackage{amsthm}",
 "\\usepackage{libertine}",
@@ -94,12 +127,12 @@ latex_template_list = [
 "%--------------------------------------",
 "% wichtige Informationen",
 "%--------------------------------------",
-"\\newcommand{\\class}{Abschnitt}",
-"\\newcommand{\\term}{X. Semester}",
-"\\newcommand{\\topic}{Thema}",
-"\\newcommand{\\created}{XX/XX/XXXX}",
+"\\newcommand{\\class}{"+section+"}",
+"\\newcommand{\\term}{"+semester+". Semester}",
+"\\newcommand{\\topic}{"+topic+"}",
+"\\newcommand{\\created}{"+date_+"}",
 "\\newcommand{\\timelimit}{}",
-"\\newcommand{\\name}{Name}",
+"\\newcommand{\\name}{"+author+"}",
 "%--------------------------------------",
 "% richtiges Encoding",
 "%--------------------------------------",
@@ -124,30 +157,7 @@ latex_template_list = [
 "\\addtolength{\\voffset}{-1cm}",
 "%\\addtolength{\\hoffset}{-1.25cm}",
 "%\\addtolength{\\textwidth}{1.5cm}",
-"\\usepackage{fancyhdr}",
-"\\begin{document}",
-"%--------------------------------------",
-"% formalities",
-"%--------------------------------------",
-"\\noindent",
-"\\begin{tabular*}{\\textwidth}{l @{\\extracolsep{\\fill}} r @{\\extracolsep{6pt}} l}",
-"\\textit{\\name} && \\textit{\\created}\\\\             % Insira o seu nome dentro dos {}'.",
-"\\textit{\\class} &&\\textit{\\term}\\\\",
-"\\end{tabular*}\\",
-"% big line to separate formalities",
-"\\rule[1ex]{\\textwidth}{0.5pt}",
-"% topic heading",
-"%\\begin{center}{\\scshape \\Large \\topic}\\end{center}",
-"\\begin{center}{\\Large \\topic}\\end{center}",
-"%--------------------------------------",
-"% set pagenumbering",
-"%--------------------------------------",
-"%\\setcounter{page}{1}",
-"\\pagenumbering{arabic}",
-"\\rfoot[]{\\thepage}",
-"% INHALT %",
-"\\bigskip",
-"\\end{document}"
+"\\usepackage{fancyhdr}"
 ]
 
 # list of .sh file content
@@ -176,7 +186,9 @@ if __name__ == "__main__":
     # running Process
     print("Generating...")
     createDirectory(path)
-    createFile(path, "main.tex", latex_template_list)
+    createFile(path, "formalities.tex", latex_formalities)
+    createFile(path, "packages.tex", latex_packages)
+    createFile(path, "main.tex", latex_main)
     createFile(path, "build.sh", bash_template_list)
     print("Done!")
     print("Die Hausaufgabe zum Thema '" + topic + "' wurde erstellt!")
