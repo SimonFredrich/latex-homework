@@ -189,7 +189,7 @@ latex_packages = [
 
 # list of .sh file content
 bash_template_list = [
-"!/bin/bash",
+"#!/bin/bash",
 "latexmk -pdf main.tex",
 "rm *.aux *.bbl *.toc *.blg *.fdb_latexmk *.fls *.log *.dvi *.lof *.out"
 ]
