@@ -12,21 +12,48 @@ if (change_author in ("J","j","Y","y")):
     author = input("Autor: ")
 section = input("Abschnitt des Unterrichtsstoffes: ")
 topic = input("Thema: ")
+
+
 semester = "3"
 # make topic fit folder structure
 topic = topic.replace(" ", "_")
 
 # get current date and format it the german way :D
 day = str(date.today().day)
+#normalize data
+if (len(day) < 2):
+    day = "0" + day
 month = str(date.today().month)
+# normalize data
+if (len(month) < 2):
+    month = "0" + month
 year = str(date.today().year)
 dot = "."
 date_ = day + dot + month + dot + year
 
+note_date = date_
+change_note_date = input("Notizdatum ändern? (J/n) ")
+change_date = False
+# check if author should be changed
+if (change_note_date in ("J","j","Y","y")):
+    change_date = True
+    note_date = input("Notizdatum: ")
+    # check due_to date and correct if necessary with additional zeros
+    note_date_split_list = note_date.split(".")
+    note_date = ""
+    for i in range(0, len(note_date_split_list)-1):
+        if (len(note_date_split_list[i]) < 2): 
+            note_date += "0" + note_date_split_list[i] + "." 
+        else:
+            note_date += note_date_split_list[i] + "." 
+    note_date+=note_date_split_list[2]
+
 # compose directory
 dash = "-"
 underscore = "_"
-directory = day + dash + month + dash + year + underscore + topic
+directory = date_.replace(".", dash) + underscore + topic
+if (change_date):
+    directory = note_date.replace(".", dash) + underscore + topic
 
 # format topic back to space form
 topic = topic.replace("_", " ")
@@ -74,7 +101,7 @@ latex_template_list = [
 "%--------------------------------------",
 "\\begin{document}",
 "\\thispagestyle{empty}",
-"{\\scshape "+author+"} \\hfill {\\scshape \\large "+topic+"} \\hfill {\\scshape "+date_+"}",
+"{\\scshape "+author+"} \\hfill {\\scshape \\large "+topic+"} \\hfill {\\scshape "+note_date+"}",
 "\\smallskip", 
 "\\hrule",
 "\\bigskip", 
@@ -130,7 +157,7 @@ latex_packages = [
 "\\newcommand{\\class}{"+section+"}",
 "\\newcommand{\\term}{"+semester+". Semester}",
 "\\newcommand{\\topic}{"+topic+"}",
-"\\newcommand{\\created}{"+date_+"}",
+"\\newcommand{\\created}{"+note_date+"}",
 "\\newcommand{\\timelimit}{}",
 "\\newcommand{\\name}{"+author+"}",
 "%--------------------------------------",
