@@ -185,6 +185,18 @@ latex_packages = [
 "%\\addtolength{\\hoffset}{-1.25cm}",
 "%\\addtolength{\\textwidth}{1.5cm}",
 "\\usepackage{fancyhdr}"
+"%--------------------------------------",
+"% include inkscape figures",
+"%--------------------------------------",
+"\\usepackage{import}",
+"\\usepackage{pdfpages}",
+"\\usepackage{transparent}",
+"\\usepackage{xcolor}",
+"\\newcommand{\\incfig}[2][1]{%",
+"    \\def\\svgwidth{#1\\columnwidth}",
+"    \\import{./figures/}{#2.pdf_tex}",
+"}",
+"\\pdfsuppresswarningpagegroup=1"
 ]
 
 # list of .sh file content
@@ -213,6 +225,7 @@ if __name__ == "__main__":
     # running Process
     print("Generating...")
     createDirectory(path)
+    createDirectory(path + "/figures")
     createFile(path, "formalities.tex", latex_formalities)
     createFile(path, "packages.tex", latex_packages)
     createFile(path, "main.tex", latex_main)
