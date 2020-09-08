@@ -62,69 +62,27 @@ topic = topic.replace("_", " ")
 parent_dir = os.getcwd()
 path = os.path.join(parent_dir, directory)
 
-# list of .tex file content
-latex_template_list = [
-"\\documentclass[12pt, a4paper]{article}",
-"% change size of headings",
-"%--------------------------------------",
-"\\usepackage[small]{titlesec}",
-"%--------------------------------------",
-"\\addtolength{\\hoffset}{-1cm}",
-"\\addtolength{\\textwidth}{3.5cm}",
-"\\addtolength{\\voffset}{-2.5cm}", 
-"\\addtolength{\\textheight}{5cm}",
-"\\setlength{\parskip}{0pt}",
-"\\setlength{\parindent}{15pt}", 
-"%encoding",
-"%--------------------------------------",
-"\\usepackage[utf8]{inputenc}", 
-"\\usepackage[T1]{fontenc}", 
-"%--------------------------------------",
-"%German-specific commands",
-"%--------------------------------------",
-"\\usepackage[ngerman]{babel}", 
-"%--------------------------------------",
-"%Hyphenation rules",
-"%--------------------------------------",
-"\\usepackage{hyphenat}",
-"\\hyphenation{Mathe-matik wieder-gewinnen}",
-"%--------------------------------------", 
-"%include some more packages",
-"%--------------------------------------", 
-"\\usepackage{amsthm}",
-"\\usepackage{amsmath}", 
-"\\usepackage{amssymb}",
-"\\usepackage{amsfonts}",
-"\\usepackage{amscd}",
-"\\usepackage[colorlinks = true, linkcolor = black, citecolor = black, final]{hyperref}",
-"\\pagestyle{empty}",
-"%--------------------------------------",
-"\\begin{document}",
-"\\thispagestyle{empty}",
-"{\\scshape "+author+"} \\hfill {\\scshape \\large "+topic+"} \\hfill {\\scshape "+note_date+"}",
-"\\smallskip", 
-"\\hrule",
-"\\bigskip", 
-"% real content",
-"\n\n",
-"\\end{document}"
-]
-
 # new version of latex template list
 latex_main = [
-"\\input{packages.tex}",
+"\\input{preamble}",
 "\\begin{document}",
-"\\input{formalities.tex}",
+"\\input{information}",
+"",
+"",
+"",
+"",
+"",
+"",
 "\\end{document}"
 ]
 
-latex_formalities = [
+latex_information = [
 "%--------------------------------------",
-"% formalities",
+"% information and header",
 "%--------------------------------------",
 "\\noindent",
 "\\begin{tabular*}{\\textwidth}{l @{\\extracolsep{\\fill}} r @{\\extracolsep{6pt}} l}",
-"\\textit{\\name} && \\textit{\\created}\\\\             % Insira o seu nome dentro dos {}'.",
+"\\textit{\\name} && \\textit{\\created}\\\\",
 "\\textit{\\class} &&\\textit{\\term}\\\\",
 "\\end{tabular*}\\",
 "% big line to separate formalities",
@@ -138,11 +96,11 @@ latex_formalities = [
 "%\\setcounter{page}{1}",
 "\\pagenumbering{arabic}",
 "\\rfoot[]{\\thepage}",
-"% INHALT %",
-"\\bigskip"
+"\\bigskip",
+"% INHALT %"
 ]
 
-latex_packages = [
+latex_preamble = [
 "\\documentclass[12pt, a4paper]{article}",
 "\\usepackage{amsthm}",
 "\\usepackage{libertine}",
@@ -151,15 +109,6 @@ latex_packages = [
 "\\usepackage{amsmath,amssymb}",
 "\\usepackage{multicol}",
 "\\usepackage[shortlabels]{enumitem}",
-"%--------------------------------------",
-"% wichtige Informationen",
-"%--------------------------------------",
-"\\newcommand{\\class}{"+section+"}",
-"\\newcommand{\\term}{"+semester+". Semester}",
-"\\newcommand{\\topic}{"+topic+"}",
-"\\newcommand{\\created}{"+note_date+"}",
-"\\newcommand{\\timelimit}{}",
-"\\newcommand{\\name}{"+author+"}",
 "%--------------------------------------",
 "% richtiges Encoding",
 "%--------------------------------------",
@@ -178,6 +127,15 @@ latex_packages = [
 "% change size of headings",
 "%--------------------------------------",
 "\\usepackage[small]{titlesec}",
+"%--------------------------------------",
+"% wichtige Informationen",
+"%--------------------------------------",
+"\\newcommand{\\class}{"+section+"}",
+"\\newcommand{\\term}{"+semester+". Semester}",
+"\\newcommand{\\topic}{"+topic+"}",
+"\\newcommand{\\created}{"+note_date+"}",
+"\\newcommand{\\timelimit}{}",
+"\\newcommand{\\name}{"+author+"}",
 "%--------------------------------------",
 "% change text-offset settings",
 "%--------------------------------------",
@@ -226,10 +184,12 @@ if __name__ == "__main__":
     print("Generating...")
     createDirectory(path)
     createDirectory(path + "/figures")
-    createFile(path, "formalities.tex", latex_formalities)
-    createFile(path, "packages.tex", latex_packages)
+    print("dir 'figures' created")
+    createFile(path, "information.tex", latex_formalities)
+    createFile(path, "preamble.tex", latex_packages)
     createFile(path, "main.tex", latex_main)
+    print("information.tex, preamble.tex and main.tex created")
     createFile(path, "build.sh", bash_template_list)
-    print("Done!")
-    print("Die Hausaufgabe zum Thema '" + topic + "' wurde erstellt!")
+    print("build.sh created")
+    print("...'" + topic + "' Done!")
     
