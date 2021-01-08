@@ -14,7 +14,7 @@ section = input("Abschnitt des Unterrichtsstoffes: ")
 topic = input("Thema: ")
 
 
-semester = "3"
+semester = "4"
 # make topic fit folder structure
 topic = topic.replace(" ", "_")
 
