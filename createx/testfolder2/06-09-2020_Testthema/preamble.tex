@@ -1,0 +1,86 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsthm}
+\usepackage{libertine}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage[shortlabels]{enumitem}
+%--------------------------------------
+% richtiges Encoding
+%--------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%--------------------------------------
+% German-specific commands
+%--------------------------------------
+\usepackage[ngerman]{babel}
+%--------------------------------------
+% Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{Mathe-matik wieder-gewinnen}
+%--------------------------------------
+% change size of headings
+%--------------------------------------
+\usepackage[small]{titlesec}
+%--------------------------------------
+% wichtige Informationen
+%--------------------------------------
+\newcommand{\class}{Test}
+\newcommand{\term}{4. Semester}
+\newcommand{\topic}{Testthema}
+\newcommand{\created}{06.09.2020}
+\newcommand{\timelimit}{}
+\newcommand{\name}{Simon Fredrich}
+%--------------------------------------
+% change text-offset settings
+%--------------------------------------
+\addtolength{\voffset}{-1cm}
+%\addtolength{\hoffset}{-1.25cm}
+%\addtolength{\textwidth}{1.5cm}
+\usepackage{fancyhdr}%--------------------------------------
+% include inkscape figures
+%--------------------------------------
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+\pdfsuppresswarningpagegroup=1
+%--------------------------------------% quote solution
+%--------------------------------------
+\let\oldquote'
+\newif\ifquoteopen
+\catcode`\'=\active
+\makeatletter
+% we have to redefine \pr@m@s to use an active '
+\def\pr@m@s{%
+  \ifx'\@let@token
+    \expandafter\pr@@@s
+  \else
+    \ifx^\@let@token
+      \expandafter\expandafter\expandafter\pr@@@t
+    \else
+      \egroup
+    \fi
+  \fi}
+\protected\def'{%
+  \ifmmode
+    \expandafter\active@math@prime
+  \else
+    \expandafter\active@text@prime
+  \fi}
+\def\active@text@prime{%
+   \@ifnextchar'{%
+     \ifquoteopen
+       \global\quoteopenfalse\grqq\expandafter\@gobble
+     \else
+       \global\quoteopentrue\glqq\expandafter\@gobble
+     \fi
+   }{\oldquote}%
+}
+\makeatother
