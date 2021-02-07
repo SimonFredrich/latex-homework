@@ -29,7 +29,7 @@ if (len(month) < 2):
     month = "0" + month
 year = str(date.today().year)
 dot = "."
-date_ = day + dot + month + dot + year
+date_ = year+dot+month+dot+day 
 
 note_date = date_
 change_note_date = input("Notizdatum ändern? (J/n) ")
@@ -53,7 +53,9 @@ dash = "-"
 underscore = "_"
 directory = date_.replace(".", dash) + underscore + topic
 if (change_date):
-    directory = note_date.replace(".", dash) + underscore + topic
+    # Todo: Take something like 8.2.2021 into account
+    note_date = entry[6:10]+'_'+entry[3:5]+'_'+entry[0:2]
+    directory = note_date + underscore + topic
 
 # format topic back to space form
 topic = topic.replace("_", " ")
