@@ -51,7 +51,7 @@ if (change_note_date in ("J","j","Y","y")):
 # compose directory
 dash = "-"
 underscore = "_"
-directory = date_.replace(".", dash) + underscore + topic
+directory = date_.replace(".", underscore) + underscore + topic
 if (change_date):
     # Todo: Take something like 8.2.2021 into account
     note_date = entry[6:10]+'_'+entry[3:5]+'_'+entry[0:2]
