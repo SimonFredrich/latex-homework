@@ -144,7 +144,7 @@ latex_preamble = [
 "\\newcommand{\\class}{"+section+"}",
 "\\newcommand{\\term}{"+semester+". Semester}",
 "\\newcommand{\\topic}{"+topic+"}",
-"\\newcommand{\\created}{"+note_date+"}",
+"\\newcommand{\\created}{"+note_date[8:10]+'.'+note_date[5:7]+'.'+note_date[0:4]+"}",
 "\\newcommand{\\timelimit}{}",
 "\\newcommand{\\name}{"+author+"}",
 "%--------------------------------------",
