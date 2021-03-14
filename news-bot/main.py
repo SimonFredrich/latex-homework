@@ -4,8 +4,6 @@ import urllib.request
 from lxml import html
 from bs4 import BeautifulSoup
 import time
-import logging
-import redis
 
 
 def wikipedia_news(update, context):
