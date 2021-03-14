@@ -4,6 +4,7 @@ import urllib.request
 from lxml import html
 from bs4 import BeautifulSoup
 import time
+import json
 
 
 def wikipedia_news(update, context):
@@ -33,9 +34,9 @@ def text(update, context):
     print("text entered")
 
 def main():
-    f = open('./token.txt', 'r')
-    lines = f.readlines()
-    TOKEN = lines[0]
+    f = open('token.json', )
+    token = json.load(f)["token"]
+    TOKEN = token 
 
     # create the updater, that will automatically create also a dispatcher and a queue to 
     # make them dialoge

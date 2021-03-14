@@ -1,5 +1,6 @@
 from telegram.ext import Updater,CommandHandler, MessageHandler, Filters
 import random
+import json
 
 def start(update, context):
     update.message.reply_text('start command received')
@@ -19,9 +20,9 @@ def quote(update, context):
     update.message.reply_text(quotes[random.randint(0, len(quotes)-1)])
 
 def main():
-    file_variable = open('token.txt')
-    lines = file_variable.readlines()
-    TOKEN = lines[0]
+    f = open('token.json', )
+    token = json.load(f)["token"]
+    TOKEN = token
 
     # create the updater, that will automatically create also a dispatcher and a queue to 
     # make them dialoge
