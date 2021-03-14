@@ -33,8 +33,8 @@ def text(update, context):
     print("text entered")
 
 def main():
-    file_variable = open('token.txt')
-    lines = file_variable.readlines()
+    f = open('./token.txt', 'r')
+    lines = f.readlines()
     TOKEN = lines[0]
 
     # create the updater, that will automatically create also a dispatcher and a queue to 
