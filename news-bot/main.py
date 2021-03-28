@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 import time
 import json
 
-
 def wikipedia_news(update, context):
     update.message.reply_text("Wikipedia news have been initiated!")
     while True:
